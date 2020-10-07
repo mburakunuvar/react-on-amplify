@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function App() {
   const [contact, setContact] = useState({
     fName: "",
     lName: "",
     email: "",
+    comment: "",
   });
   function handleChange(event) {
     const value = event.target.value;
@@ -17,14 +19,44 @@ function App() {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("BUTTON CLICKED");
+    const value = event.target.value;
+    const name = event.target.name;
+    setContact((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+    // console.log(contact.fName);
+    // console.log(contact.lName);
+    // console.log(contact.email);
+    // console.log(contact.comment);
+    axios
+      .post(
+        `https://eqbtfy9xj2.execute-api.us-east-1.amazonaws.com/default/serverlessAppFunction`,
+        {
+          fName: contact.fName,
+          lName: contact.lName,
+          email: contact.email,
+          comment: contact.comment,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+  }
+
   return (
     <div className="container">
       <h1>
-        Hello {contact.fName} {contact.lName}
+        Welcome to Hackathon {contact.fName} {contact.lName}
       </h1>
       <br></br>
-      <p>{contact.email}</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
           name="fName"
@@ -42,6 +74,12 @@ function App() {
           name="email"
           placeholder="Email Address"
           value={contact.email}
+        />
+        <input
+          onChange={handleChange}
+          name="comment"
+          placeholder="Comment"
+          value={contact.comment}
         />
         <button>Submit</button>
       </form>
