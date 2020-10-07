@@ -48,6 +48,14 @@ function App() {
         console.log(res);
         console.log(res.data);
       });
+    setContact((prevValue) => {
+      return {
+        fName: "",
+        lName: "",
+        email: "",
+        comment: "",
+      };
+    });
   }
 
   return (
