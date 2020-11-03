@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="container">
       <div className="welcome">
-        <h3>Welcome to Hackathon {post.name} ! </h3>
+        <h3>Welcome to AWS Immersion Day {post.name} ! </h3>
         <br></br>
       </div>
       <form onSubmit={handleSubmit}>
@@ -58,8 +58,8 @@ function App() {
         />
         <input
           onChange={handleChange}
-          name="message"
-          placeholder="Your Message"
+          name="question"
+          placeholder="any questions?"
           value={post.message}
         />
         <button type="submit"> Submit </button>

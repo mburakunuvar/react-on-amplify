@@ -51,8 +51,8 @@ function App() {
         />
         <input
           onChange={handleChange}
-          name="message"
-          placeholder="Your Message"
+          name="question"
+          placeholder="any questions?"
           value={post.message}
         />
         <button type="submit"> Submit </button>
