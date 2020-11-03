@@ -6,7 +6,7 @@ function App() {
     fName: "",
     lName: "",
     email: "",
-    comment: "",
+    question: "",
   });
   function handleChange(event) {
     const value = event.target.value;
@@ -33,7 +33,7 @@ function App() {
     // console.log(contact.fName);
     // console.log(contact.lName);
     // console.log(contact.email);
-    // console.log(contact.comment);
+    // console.log(contact.question);
     axios
       .post(
         `https://eqbtfy9xj2.execute-api.us-east-1.amazonaws.com/default/serverlessAppFunction`,
@@ -41,7 +41,7 @@ function App() {
           fName: contact.fName,
           lName: contact.lName,
           email: contact.email,
-          comment: contact.comment,
+          question: contact.question,
         }
       )
       .then((res) => {
@@ -53,7 +53,7 @@ function App() {
         fName: "",
         lName: "",
         email: "",
-        comment: "",
+        question: "",
       };
     });
   }
@@ -87,7 +87,7 @@ function App() {
           onChange={handleChange}
           name="question"
           placeholder="any questions?"
-          value={contact.comment}
+          value={contact.question}
         />
         <button>Submit</button>
       </form>
